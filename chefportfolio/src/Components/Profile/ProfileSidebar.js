@@ -5,10 +5,10 @@ class ProfileSidebar extends React.Component {
         return(
             <div className='ProfileSidebar'>
             <div className='nav-profile-img'>
-                <img src='' />
+            <i class="fas fa-user"></i>
             </div>
             <div className='nav-profile-name'>
-                
+                Name
             </div>
             <div className='nav-sidebar'>
                 <nav>

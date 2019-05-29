@@ -6,23 +6,39 @@ class Post extends React.Component {
         return (
             <div className='post-wrapper'>
                <div className='post-header'>
-                    <img src='' /> Profile Img, and Username of Poster, Also serves as clickable link to profiles page
+                    <img src='' /> <i class="fas fa-user"></i> Username
                </div> 
                <div className='post-name'>
-                   name of the dish/item on display
+                   Name of Dish
                </div>
                <div className='post-img'>
-                   <img src='' />
+                   <img src='' /> <i class="fas fa-pizza-slice"></i>
                </div>
                <div className='post-description'>
-                    description of dish/item on display
+                    description of dish
                </div>
                <div className='post-location'>
-                   will tell location of poster
+                   San Antonio, Tx
                </div>
             </div>
         )
     }
 }
+
+// const Post = props => {
+//   return (
+//     <div className={`card${props.post.seen ? " seen" : ""}`}>
+//       <h3>{props.post.title}</h3>
+//       <p>{props.post.category.toUpperCase()}</p>
+//       <a href={`${props.post.link}`}>READ NOW</a>
+//       <button
+//         type="submit"
+//         onClick={() => props.togglePost(props.post)}
+//       >
+//         completed
+//       </button>
+//     </div>
+//   );
+// };
 
 export default Post

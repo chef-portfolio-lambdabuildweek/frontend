@@ -5,7 +5,7 @@ class NavBar extends React.Component{
         return(
             <div>
                 <div className='logo'>
-                    <img src='' />
+                <i class="fas fa-pizza-slice"></i>
                 </div>
                 <div className='upload-btn'>
                     <button>Upload</button>

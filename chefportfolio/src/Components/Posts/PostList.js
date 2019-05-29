@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from './Posts';
+import Post from './Post';
 
 
 const PostList = props => {

@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import TabList from "./TabList";
-import CardList from "./CardList";
-import CardForm from "./CardForm";
+import PostList from "./PostList";
+import PostForm from "./PostForm";
 import { tabData } from "../../data";
 
 export default class Content extends Component {
@@ -147,8 +147,8 @@ export default class Content extends Component {
           selectedTab={this.state.selected}
           selectTabHandler={this.changeSelected}
         />
-        <CardList cards={this.filterCards()} toggleCard={this.toggleCard} />
-        <CardForm addNewArticle={this.addNewArticle} />
+        <PostList cards={this.filterCards()} toggleCard={this.toggleCard} />
+        <PostForm addNewArticle={this.addNewArticle} />
       </div>
     );
   }
