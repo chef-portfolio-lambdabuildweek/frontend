@@ -4,8 +4,8 @@ import Post from './Post';
 
 const PostList = props => {
   return (
-    <div className="cards-container">
-          {props.cards.map(post => <Post key={post.id} post={post} togglePost={props.togglePost}/>)}
+    <div className="posts-container">
+          {props.posts.map(post => <Post key={post.id} post={post}/>)}
     </div>
   )
 }

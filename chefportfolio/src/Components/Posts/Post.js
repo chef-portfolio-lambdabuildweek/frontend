@@ -1,44 +1,15 @@
 import React from 'react';
 
+const Post = props => {
+  return (
+    <div className={`post${props.post.seen ? " seen" : ""}`}>
+      <h3>{props.post.title}</h3>
+      <p>Category: {props.post.category.toUpperCase()}</p>
+      <img src={props.post.imgURL} />
+      <p>{props.post.description}</p>
 
-class Post extends React.Component {
-    render(){
-        return (
-            <div className='post-wrapper'>
-               <div className='post-header'>
-                    <img src='' /> <i class="fas fa-user"></i> Username
-               </div> 
-               <div className='post-name'>
-                   Name of Dish
-               </div>
-               <div className='post-img'>
-                   <img src='' /> <i class="fas fa-pizza-slice"></i>
-               </div>
-               <div className='post-description'>
-                    description of dish
-               </div>
-               <div className='post-location'>
-                   San Antonio, Tx
-               </div>
-            </div>
-        )
-    }
-}
+    </div>
+  );
+};
 
-// const Post = props => {
-//   return (
-//     <div className={`card${props.post.seen ? " seen" : ""}`}>
-//       <h3>{props.post.title}</h3>
-//       <p>{props.post.category.toUpperCase()}</p>
-//       <a href={`${props.post.link}`}>READ NOW</a>
-//       <button
-//         type="submit"
-//         onClick={() => props.togglePost(props.post)}
-//       >
-//         completed
-//       </button>
-//     </div>
-//   );
-// };
-
-export default Post
+export default Post;
