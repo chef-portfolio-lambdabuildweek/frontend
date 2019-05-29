@@ -5,7 +5,7 @@ const Post = props => {
     <div className={`post${props.post.seen ? " seen" : ""}`}>
       <h3>{props.post.title}</h3>
       <p>Category: {props.post.category.toUpperCase()}</p>
-      <img src={props.post.imgURL} />
+      <img src={props.post.imgURL} alt= 'img' />
       <p>{props.post.description}</p>
 
     </div>
