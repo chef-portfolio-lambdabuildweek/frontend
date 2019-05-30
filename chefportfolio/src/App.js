@@ -3,7 +3,12 @@ import './App.css';
 import axios from 'axios';
 import PostsContainer from './Components/Posts/PostsContainer'
 import PostForm from './Components/Posts/PostForm'
-import {Route, NavLink} from 'react-router-dom';
+import {Route, NavLink, Switch, withRouter} from 'react-router-dom';
+// import { Redirect } from "react-router";
+// import Register from "./Authentication/Register";
+// import Login from "./Authentication/Login";
+// import Profile from "./Authentication/Profile";
+// import Content from "./Components/Content/Content";
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +40,6 @@ class App extends Component {
   render(){
     return(
       <div className='App'>
-
        <div className='home-link'>
           <NavLink to = '/'> Home </NavLink>
        </div>
@@ -48,10 +52,20 @@ class App extends Component {
       <Route
       exact path = '/'
       render = {props => <PostsContainer posts ={this.state.posts} />} />
+      {/* <div className='login'>        <section>
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/profile" render={props => <Profile {...props} />} />
+            <Route path="/content" component={Content} />
+            <Route exact path="/" render={() => <Redirect to="/content" />} />
+          </Switch>
+        </section>
+        </div> */}
       </div>
     )
       
   }
 }
 
-export default App;
+export default withRouter(App);
