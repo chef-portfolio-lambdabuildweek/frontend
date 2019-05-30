@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import TabList from "./TabList";
+import PostList from "./PostList";
+import PostForm from "./PostForm";
 
-import PostList from "../Components/Posts/PostList";
-import PostForm from "../Components/Posts/PostForm";
 
-export default class Profile extends Component {
+export default class Content extends Component {
   constructor() {
     super();
     this.state = {
       selected: "all",
       tabs: [],
-      posts: [],
+      cards: [],
       newPost: [],
       username: ""
     };
   }
 
-  getProfile = () => {
+  getPost = () => {
     const token = localStorage.getItem("jwt");
-    const profile = localStorage.getItem("username");
     const options = {
       headers: {
         Authorization: token
@@ -29,28 +29,27 @@ export default class Profile extends Component {
     if (token) {
       axios
         .get(
-          `https://chef-portfolio.herokuapp.com/api/post/${profile}`,
+          "https://modern-day-researcher-backend.herokuapp.com/api/post",
           options
-        
         )
         .then(res => {
-          if (res.status === 201 && res.data) {
-            console.log("Help!", res.data);
+          if (res.status === 200 && res.data) {
+            console.log(res.data);
             this.setState({ loggedIn: true, posts: res.data });
           } else {
             throw new Error();
           }
         })
         .catch(err => {
-           this.props.history.push("/login");
+          this.props.history.push("/login");
         });
     }
   };
 
   componentDidMount() {
-    this.getProfile();
+    this.getPost();
   }
- 
+
   componentDidUpdate(prevProps) {
     const { pathname } = this.props.location;
     if (pathname === "/" && pathname !== prevProps.location.pathname) {
@@ -97,20 +96,20 @@ export default class Profile extends Component {
     if (token) {
       axios
         .put(
-          `https://chef-portfolio.herokuapp.com/api/post/update/${id}`,
+          `https://modern-day-researcher-backend.herokuapp.com/api/post/update/${id}`,
           changes,
           options
         )
         .then(res =>
           this.setState({
-            posts: this.state.posts.map(post => {
-              if (post.id === id) {
+            cards: this.state.cards.map(card => {
+              if (card.id === id) {
                 return {
-                  ...post,
-                  seen: !post.seen
+                  ...card,
+                  seen: !card.seen
                 };
               }
-              return post;
+              return card;
             })
           })
         )
@@ -129,7 +128,7 @@ export default class Profile extends Component {
     if (token) {
       axios
         .post(
-          "https://chef-portfolio.herokuapp.com/api/post/create",
+          "https://modern-day-researcher-backend.herokuapp.com/api/post/create",
           info,
           options
         )
@@ -142,7 +141,12 @@ export default class Profile extends Component {
     if(!localStorage.getItem('jwt')) {this.props.history.push('/login')}
     return (
       <div className="content-container">
-        <PostList posts={this.filterPosts()} toggleCard={this.togglePost} />
+        <TabList
+          tabs={this.state.tabs}
+          selectedTab={this.state.selected}
+          selectTabHandler={this.changeSelected}
+        />
+        <PostList cards={this.filterCards()} toggleCard={this.toggleCard} />
         <PostForm addNewArticle={this.addNewArticle} />
       </div>
     );
