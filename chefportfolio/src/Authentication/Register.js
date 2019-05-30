@@ -34,7 +34,7 @@ class Register extends Component {
         //   throw new Error();
         // }
         localStorage.setItem('jwt', res.data.token)
-        this.props.history.push('/content')
+        this.props.history.push('/')
       })
       .catch(err => {
         this.setState({

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Content from '../Content/Content';
 
 class PostForm extends Component {
   constructor(props) {
@@ -14,9 +15,10 @@ class PostForm extends Component {
   addPost = event => {
     event.preventDefault();
     this.props.addNewPost(this.state)
-    this.props.history.push('/')
+    // this.props.history.push('/')
 
     this.setState({
+      ...this.state,
       name: '',
       category: '',
       description: '',
@@ -25,7 +27,7 @@ class PostForm extends Component {
   }
 
   handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ ...this.state, [e.target.name]: e.target.value });
   };
 
   render() {
