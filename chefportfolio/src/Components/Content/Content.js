@@ -12,7 +12,7 @@ export default class Content extends Component {
     this.state = {
       selected: "all",
       tabs: [],
-      cards: [],
+      posts: [],
       newPost: [],
       username: ""
     };
@@ -50,18 +50,18 @@ export default class Content extends Component {
     this.getPost();
   }
 
-  componentDidUpdate(prevProps) {
-    const { pathname } = this.props.location;
-    if (pathname === "/" && pathname !== prevProps.location.pathname) {
-      this.getPost();
-    }
-    if (this.state.newPost.length > 0) {
-      this.getPost();
-      this.setState({
-        newPost: []
-      });
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const { pathname } = this.props.location;
+  //   if (pathname === "/" && pathname !== prevProps.location.pathname) {
+  //     this.getPost();
+  //   }
+  //   if (this.state.newPost.length > 0) {
+  //     this.getPost();
+  //     this.setState({
+  //       newPost: []
+  //     });
+  //   }
+  // }
 
   logout = () => {
     localStorage.removeItem("jwt");
@@ -118,6 +118,7 @@ export default class Content extends Component {
   };
 
   addNewPost = info => {
+    console.log(info)
     const token = localStorage.getItem("jwt");
     const options = {
       headers: {
@@ -132,17 +133,22 @@ export default class Content extends Component {
           info,
           options
         )
-        .then(res => this.setState({ newPost: res.data }))
+        .then(res => 
+
+          this.getPost()   
+          
+         )
         .catch(err => console.log(err));
     }
   };
 
   render() {
+    console.log(this.state.posts)
     if(!localStorage.getItem('jwt')) {this.props.history.push('/login')}
     return (
       <div className="content-container">
-        <PostList posts={this.filterPosts()} togglePost={this.togglePost} />
         <PostForm addNewPost={this.addNewPost} />
+        <PostList posts={this.filterPosts()} togglePost={this.togglePost} />
       </div>
     );
   }

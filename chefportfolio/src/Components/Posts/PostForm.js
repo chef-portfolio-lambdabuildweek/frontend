@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Content from '../Content/Content';
+import axios from 'axios';
 
 class PostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      title: '',
       category: '',
       description: '',
       imgURL: ''
@@ -15,19 +16,35 @@ class PostForm extends Component {
   addPost = event => {
     event.preventDefault();
     this.props.addNewPost(this.state)
-    // this.props.history.push('/')
+
 
     this.setState({
       ...this.state,
-      name: '',
+      title: '',
       category: '',
       description: '',
       imgURL: ''
     });
+
+    axios
+    .get(
+      "https://chef-portfolio.herokuapp.com/api/post"
+)
+    .then(res => {
+      if (res.status === 200 && res.data) {
+        console.log(res.data);
+        this.setState({ loggedIn: true, posts: res.data });
+      } else {
+        throw new Error();
+      }
+    })
+    .catch(err => {
+      this.props.history.push("/login");
+    });
   }
 
   handleInputChange = e => {
-    this.setState({ ...this.state, [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
@@ -37,8 +54,8 @@ class PostForm extends Component {
           <input
             onChange={this.handleInputChange}
             placeholder="Name of Dish"
-            value={this.state.name}
-            name="name"
+            value={this.state.title}
+            name="title"
           />
           <input
             onChange={this.handleInputChange}

@@ -11,25 +11,6 @@ import Profile from "./Authentication/Profile";
 import Content from "./Components/Content/Content";
 
 class App extends Component {
-
-  componentDidMount(){
-    axios.get('https://chef-portfolio.herokuapp.com/api/post')
-    .then(res => {
-      this.setState({ posts: res.data })
-    })
-    .catch(err =>{
-      console.log(err)
-    })
-  }
-  addNewPost = post => {
-    axios
-    .post('https://chef-portfolio.herokuapp.com/api/post/create', post)
-    .then( res => {
-      this.setState({ posts: res.data })
-    })
-    .catch( err => console.log(err))
-  }
-  
   render() {
     return (
       <div className="App">
@@ -62,7 +43,6 @@ class App extends Component {
             </NavLink>
         </nav>
         
-
         <section>
           <Switch>
             <Route path="/login" component={Login} />
@@ -70,9 +50,7 @@ class App extends Component {
             <Route path="/profile" render={props => <Profile {...props} />} />
             <Route path="/content" component={PostsContainer} />
             <Route exact path="/" render={() => <Redirect to="/content" />} />
-            <Route
-      exact path = '/post-form'
-       />
+            <Route exact path = '/post-form' component={Content} />
           </Switch>
         </section>
       </div>
