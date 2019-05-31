@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import TabList from "./TabList";
-import PostList from "./PostList";
-import PostForm from "./PostForm";
-
+import PostList from "../Posts/PostList";
+import PostForm from "../Posts/PostForm";
 
 export default class Content extends Component {
   constructor() {
@@ -12,7 +10,7 @@ export default class Content extends Component {
     this.state = {
       selected: "all",
       tabs: [],
-      cards: [],
+      posts: [],
       newPost: [],
       username: ""
     };
@@ -29,7 +27,7 @@ export default class Content extends Component {
     if (token) {
       axios
         .get(
-          "https://modern-day-researcher-backend.herokuapp.com/api/post",
+          "https://chef-portfolio.herokuapp.com/api/post",
           options
         )
         .then(res => {
@@ -50,18 +48,6 @@ export default class Content extends Component {
     this.getPost();
   }
 
-  componentDidUpdate(prevProps) {
-    const { pathname } = this.props.location;
-    if (pathname === "/" && pathname !== prevProps.location.pathname) {
-      this.getPost();
-    }
-    if (this.state.newPost.length > 0) {
-      this.getPost();
-      this.setState({
-        newPost: []
-      });
-    }
-  }
 
   logout = () => {
     localStorage.removeItem("jwt");
@@ -96,20 +82,20 @@ export default class Content extends Component {
     if (token) {
       axios
         .put(
-          `https://modern-day-researcher-backend.herokuapp.com/api/post/update/${id}`,
+          `https://chef-portfolio.herokuapp.com/api/update/${id}`,
           changes,
           options
         )
         .then(res =>
           this.setState({
-            cards: this.state.cards.map(card => {
-              if (card.id === id) {
+            posts: this.state.posts.map(post => {
+              if (post.id === id) {
                 return {
-                  ...card,
-                  seen: !card.seen
+                  ...post,
+                  seen: !post.seen
                 };
               }
-              return card;
+              return post;
             })
           })
         )
@@ -117,7 +103,8 @@ export default class Content extends Component {
     }
   };
 
-  addNewArticle = info => {
+  addNewPost = info => {
+    console.log(info)
     const token = localStorage.getItem("jwt");
     const options = {
       headers: {
@@ -128,26 +115,26 @@ export default class Content extends Component {
     if (token) {
       axios
         .post(
-          "https://modern-day-researcher-backend.herokuapp.com/api/post/create",
+          "https://chef-portfolio.herokuapp.com/api/post/create",
           info,
           options
         )
-        .then(res => this.setState({ newPost: res.data }))
+        .then(res => 
+
+          this.getPost()   
+          
+         )
         .catch(err => console.log(err));
     }
   };
 
   render() {
+    console.log(this.state.posts)
     if(!localStorage.getItem('jwt')) {this.props.history.push('/login')}
     return (
       <div className="content-container">
-        <TabList
-          tabs={this.state.tabs}
-          selectedTab={this.state.selected}
-          selectTabHandler={this.changeSelected}
-        />
-        <PostList cards={this.filterCards()} toggleCard={this.toggleCard} />
-        <PostForm addNewArticle={this.addNewArticle} />
+        <PostForm addNewPost={this.addNewPost} />
+        <PostList posts={this.filterPosts()} togglePost={this.togglePost} />
       </div>
     );
   }

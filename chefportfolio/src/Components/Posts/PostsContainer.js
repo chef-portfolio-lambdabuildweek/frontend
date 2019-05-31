@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PostList from './PostList';
-
+import PostForm from './PostForm'
 
 class PostsContainer extends React.Component {
     constructor(props) {
@@ -24,6 +24,7 @@ class PostsContainer extends React.Component {
       return(
         <div>
          <PostList posts={this.state.posts} />
+         {/* <PostForm addNewPost = {this.addNewPost}  />  */}
         </div>
       )
         

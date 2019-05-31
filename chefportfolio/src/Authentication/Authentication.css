@@ -1,0 +1,13 @@
+/* Login Page*/
+.Login-Input{
+    display: flex;
+    margin-left: 875px;
+    margin-bottom: 10px;
+}
+
+/* Registration Page*/
+.Register-Input{
+    display: flex;
+    margin-left: 875px;
+    margin-bottom: 10px;
+}
