@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Authentication.css';
 
 const initialUser = {
   username: '',
@@ -50,6 +51,7 @@ class Login extends Component {
           </section>
           <label htmlFor="username">Username</label>
           <input
+            className='Login-Input'
             type="text"
             id="username"
             name="username"
@@ -58,6 +60,7 @@ class Login extends Component {
           />
           <label htmlFor="password">Password</label>
           <input
+            className='Login-Input'
             type="password"
             id="password"
             name="password"
@@ -66,6 +69,7 @@ class Login extends Component {
           />
           <label htmlFor="email">Email</label>
           <input
+            className='Login-Input'
             type="text"
             id="email"
             name="email"

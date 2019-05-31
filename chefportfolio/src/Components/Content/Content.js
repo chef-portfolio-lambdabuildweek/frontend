@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-
 import PostList from "../Posts/PostList";
 import PostForm from "../Posts/PostForm";
-
 
 export default class Content extends Component {
   constructor() {
@@ -50,18 +48,6 @@ export default class Content extends Component {
     this.getPost();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { pathname } = this.props.location;
-  //   if (pathname === "/" && pathname !== prevProps.location.pathname) {
-  //     this.getPost();
-  //   }
-  //   if (this.state.newPost.length > 0) {
-  //     this.getPost();
-  //     this.setState({
-  //       newPost: []
-  //     });
-  //   }
-  // }
 
   logout = () => {
     localStorage.removeItem("jwt");

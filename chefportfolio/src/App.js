@@ -14,32 +14,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav className="top-nav">
-          <div className="reg-login">
-          <NavLink className="top-nav-tab sign-in reg" to="/register">
-            Register
-          </NavLink>
-            <NavLink className="top-nav-tab sign-in" to="/login">
-              Login
-            </NavLink>
-          </div>
-          <div className="logo">
-          <NavLink to="/content">
-           
-          </NavLink>
-        </div>
-          <NavLink className="top-nav-tab main" to="/content">
+      <h1><i class="fas fa-pizza-slice"></i> Chef Portfolio!</h1>
+        <nav>
+        <NavLink className="nav-home" to="/content">
             Home
           </NavLink>
-          <NavLink to ='/post-form'>
+        <NavLink className="nav-post" to ='/post-form'>
             Add New Post
+        </NavLink>
+        <NavLink className='nav-reg' to="/register">
+            Register
           </NavLink>
-          <NavLink
-              className="top-nav-tab main"
-              to="/login"
-              onClick={() => localStorage.removeItem("jwt")}
-            >
-              Log Out
+        <NavLink className='nav-login' to="/login">
+              Login
             </NavLink>
         </nav>
         

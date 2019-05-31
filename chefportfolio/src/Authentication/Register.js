@@ -53,6 +53,7 @@ class Register extends Component {
           </section>
           <label htmlFor='username'>Username</label>
           <input
+            className='Register-Input'
             type='text'
             id='username'
             name='username'
@@ -61,6 +62,7 @@ class Register extends Component {
           />
           <label htmlFor='password'>Password</label>
           <input
+            className='Register-Input'
             type='text'
             id='password'
             name='password'
@@ -69,6 +71,7 @@ class Register extends Component {
           />
             <label htmlFor="email">Email</label>
           <input
+            className='Register-Input'
             type="text"
             id="email"
             name="email"

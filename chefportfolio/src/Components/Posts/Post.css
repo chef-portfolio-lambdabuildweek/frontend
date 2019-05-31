@@ -1,0 +1,83 @@
+/* Post */
+.post{
+     text-align: center;
+     margin-left: 275px;
+}
+
+.title{
+    text-align: left;
+    margin-top: 30px;
+    border-bottom: 1px solid black;
+    width: 800px;
+}
+
+.description{
+text-align: left;
+width: 800px;
+
+}
+
+.img-link{
+text-align: left;
+margin-bottom: 20px;
+}
+
+.category {
+text-align: left;
+color: gray;
+}
+
+.edit{
+    text-align: left;
+    color: gold;
+}
+
+.edit:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.delete{
+    text-align: left;
+    color: darkred;
+    margin-left: 40px;
+    margin-top: -40px;
+}
+
+.delete:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Post Form */
+.PostForm{
+    margin-top: 30px;
+}
+
+input{
+    border: 1px solid black;
+    color: black;
+    padding: 2px;
+}
+
+::placeholder{
+    color: gray;
+}
+
+button {
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+    padding: 2px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+button:hover{
+    color: black;
+    background: white;
+    border: 1px solid black;
+    padding: 2px 32px;
+}
